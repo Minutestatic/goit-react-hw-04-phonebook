@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import css from './ContactList.module.css';
+
 const ContactList = ({ contacts, deleteContact }) => {
   const handleDelete = id => {
     deleteContact(id);
@@ -9,13 +9,13 @@ const ContactList = ({ contacts, deleteContact }) => {
 
   return (
     <ul className={css['contact-list']}>
-      {contacts.map(contact => (
-        <li className={css['contact-list-item']} key={contact.id}>
-          {contact.name}: {contact.number}
+      {contacts.map(({ id, name, number }) => (
+        <li className={css['contact-list-item']} key={id}>
+          {name}: {number}
           <div>
             <button
               className={css['contact-list-button']}
-              onClick={() => handleDelete(contact.id)}
+              onClick={() => handleDelete(id)}
             >
               Delete
             </button>
