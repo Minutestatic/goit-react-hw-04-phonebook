@@ -6,22 +6,25 @@ const ContactList = ({ contacts, deleteContact }) => {
   const handleDelete = id => {
     deleteContact(id);
   };
+  console.log(contacts);
 
   return (
     <ul className={css['contact-list']}>
-      {contacts.map(({ id, name, number }) => (
-        <li className={css['contact-list-item']} key={id}>
-          {name}: {number}
-          <div>
-            <button
-              className={css['contact-list-button']}
-              onClick={() => handleDelete(id)}
-            >
-              Delete
-            </button>
-          </div>
-        </li>
-      ))}
+      {contacts.map(contact => {
+        return (
+          <li className={css['contact-list-item']} key={contact.id}>
+            {contact.name}: {contact.number}
+            <div>
+              <button
+                className={css['contact-list-button']}
+                onClick={() => handleDelete(contact.id)}
+              >
+                Delete
+              </button>
+            </div>
+          </li>
+        );
+      })}
     </ul>
   );
 };
