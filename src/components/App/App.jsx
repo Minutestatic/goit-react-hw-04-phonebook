@@ -8,15 +8,10 @@ import ContactList from 'components/ContactList';
 import css from './App.module.css';
 
 const App = () => {
-  const [contacts, setContacts] = useState([]);
+  const [contacts, setContacts] = useState(
+    JSON.parse(localStorage.getItem('phoneBookContacts')) || []
+  );
   const [filter, setFilter] = useState('');
-
-  useEffect(() => {
-    const savedContacts = JSON.parse(localStorage.getItem('phoneBookContacts'));
-    if (savedContacts) {
-      setContacts(savedContacts);
-    }
-  }, []);
 
   useEffect(() => {
     localStorage.setItem('phoneBookContacts', JSON.stringify(contacts));
